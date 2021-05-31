@@ -1,0 +1,198 @@
+/* This is the custom CSS file for zumbi_web */
+
+
+/* ESAutosuggest parameters */
+
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 51px;
+  width: 280px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #EAEAEA
+}
+
+.msweb-is-tall {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.msweb-is-tall-container {
+    flex: 1;
+}
+
+
+
+details[open] summary ~ * {
+  animation: sweep 0.5s ease-in-out;
+}
+
+.msweb-fade-in {
+  animation: sweep 0.5s ease-in-out;
+}
+
+@keyframes sweep {
+  0%    {opacity: 0; margin-left: 0px}
+  100%  {opacity: 1; margin-left: 0px}
+}
+
+
+/* Tooltips */
+.tooltip {
+    display:inline;
+    position:relative;
+    text-align:left;
+}
+
+.tooltip .tooltip-text {
+    z-index:99999999;
+    visibility:hidden; opacity:0; transition:opacity 0.8s;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility:visible; opacity:1;
+}
+
+.tooltip .tooltip-text i {
+    overflow:hidden;
+}
+
+.tooltip .tooltip-text i::after {
+    content:'';
+}
+
+.tooltip-text-abs-pos{
+    position: absolute
+}
+
+
+
+/* Colors */
+.msweb-background {
+    background-color: #FFFFFF
+}
+
+.msweb-is-green-txt {
+    color: #37C624;
+}
+
+.msweb-is-dark-green-txt {
+    color: #277534;
+}
+
+.msweb-is-blue-txt {
+    color: #5073F5;
+}
+
+.msweb-is-orange-txt {
+    color: #EE9918;
+}
+
+.msweb-is-red-txt {
+    color: #FF5733;
+}
+
+.msweb-is-turq-txt {
+    color: #15B4D8;
+}
+
+.msweb-is-purple-txt {
+    color: #7A20E7;
+}
+
+.msweb-is-pink-txt {
+    color: #D648D2;
+}
+
+.msweb-is-aqua-txt {
+    color: #14DADA;
+}
+
+.msweb-is-yellow-txt {
+    color: #CAB508;
+}
+
+.msweb-is-grey-txt {
+    color: #2b2a2a;
+}
+
+.msweb-ubuntu {
+    font-family: Ubuntu, "sans-serif"
+}
+
+
+.navbar-item:hover {
+    transition: 0.5s;
+}
+
+.navbar-link:hover {
+    transition: 0.5s;
+}
+
+.msweb-is-underlined {
+    transition: 0.5s;
+   text-decoration: none;
+    border-bottom: 4px solid white;
+}
+
+
+.msweb-clicker-green {
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.msweb-clicker-green:hover {
+    color: #099e1d;
+}

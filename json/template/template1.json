@@ -1,0 +1,63 @@
+[
+  {
+    _id: '{{objectId()}}',
+    index: '{{index()}}',
+    guid: '{{guid()}}',
+    VIT: [
+      '{{repeat(10)}}',
+      {
+        name: '{{firstName()}} {{surname()}}',
+        count: '{{integer(100, 10000)}}',
+        score: '{{floating(0.01, 0.99)}}'
+      }
+    ],
+    LOC: [
+      '{{repeat(10)}}',
+      {
+        name: '{{city()}}',
+        count: '{{integer(100, 10000)}}',
+        score: '{{floating(0.01, 0.99)}}'
+      }
+    ],
+    ACA: [
+      '{{repeat(10)}}',
+      {
+        name: '{{random("Homicídio", "Limitação de acesso", "Ofensa moral", "Crime de ódio")}}',
+        count: '{{integer(100, 10000)}}',
+        score: '{{floating(0.01, 0.99)}}'
+      }
+    ],
+    PRP: [
+      '{{repeat(10)}}',
+      {
+        name: '{{firstName()}} {{surname()}}',
+        count: '{{integer(100, 10000)}}',
+        score: '{{floating(0.01, 0.99)}}'
+      }
+    ],
+    ORG: [
+      '{{repeat(10)}}',
+      {
+        name: '{{company().toUpperCase()}}',
+        count: '{{integer(100, 10000)}}',
+        score: '{{floating(0.01, 0.99)}}'
+      }
+    ],
+    TIP: [
+      '{{repeat(10)}}',
+      {
+        name: '{{random("Homicídio", "Limitação de acesso", "Ofensa moral", "Crime de ódio")}}',
+        count: '{{integer(100, 10000)}}',
+        score: '{{floating(0.01, 0.99)}}'
+      }
+    ],
+    DAT: [
+      '{{repeat(10)}}',
+      {
+        name: '{{moment(this.date(new Date(2020, 0, 1), new Date())).format("LLLL")}}',
+        count: '{{integer(100, 10000)}}',
+        score: '{{floating(0.01, 0.99)}}'
+      }
+    ]
+  }
+]

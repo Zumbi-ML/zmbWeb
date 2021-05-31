@@ -1,0 +1,367 @@
+{
+  "_id": "5fcaae5a17bc852085644b01",
+  "VIT": [
+    {
+      "name": "Herring Guzman",
+      "count": 9918,
+      "score": 0.97
+    },
+    {
+      "name": "Cross Garrett",
+      "count": 8154,
+      "score": 0.95
+    },
+    {
+      "name": "Erika Hall",
+      "count": 7165,
+      "score": 0.89
+    },
+    {
+      "name": "Ola Avila",
+      "count": 6889,
+      "score": 0.86
+    },
+    {
+      "name": "Willa Hanson",
+      "count": 4321,
+      "score": 0.79
+    },
+    {
+      "name": "Alma Glass",
+      "count": 3293,
+      "score": 0.7
+    },
+    {
+      "name": "Booth Swanson",
+      "count": 3243,
+      "score": 0.47
+    },
+    {
+      "name": "Morris Pittman",
+      "count": 3215,
+      "score": 0.44
+    },
+    {
+      "name": "Cherry Mccall",
+      "count": 2396,
+      "score": 0.22
+    },
+    {
+      "name": "Kayla Curtis",
+      "count": 1430,
+      "score": 0.07
+    }
+  ],
+  "LOC": [
+    {
+      "name": "Frizzleburg",
+      "count": 6298,
+      "score": 0.05
+    },
+    {
+      "name": "Bentonville",
+      "count": 4611,
+      "score": 0.33
+    },
+    {
+      "name": "Edneyville",
+      "count": 6683,
+      "score": 0.41
+    },
+    {
+      "name": "Dante",
+      "count": 9539,
+      "score": 0.22
+    },
+    {
+      "name": "Beason",
+      "count": 5034,
+      "score": 0.14
+    },
+    {
+      "name": "Kapowsin",
+      "count": 859,
+      "score": 0.74
+    },
+    {
+      "name": "Accoville",
+      "count": 9225,
+      "score": 0.85
+    },
+    {
+      "name": "Germanton",
+      "count": 9702,
+      "score": 0.67
+    },
+    {
+      "name": "Croom",
+      "count": 6248,
+      "score": 0.25
+    },
+    {
+      "name": "Movico",
+      "count": 212,
+      "score": 0.78
+    }
+  ],
+  "ACA": [
+    {
+      "name": "Homicídio",
+      "count": 2728,
+      "score": 0.94
+    },
+    {
+      "name": "Restrição de acesso",
+      "count": 7434,
+      "score": 0.86
+    },
+    {
+      "name": "Demissão injustificada",
+      "count": 1552,
+      "score": 0.29
+    },
+    {
+      "name": "Crime de ódio",
+      "count": 5012,
+      "score": 0.87
+    },
+    {
+      "name": "Assédio moral",
+      "count": 1512,
+      "score": 0.8
+    },
+    {
+      "name": "Não contratação",
+      "count": 842,
+      "score": 0.96
+    },
+    {
+      "name": "Crime de ódio",
+      "count": 838,
+      "score": 0.93
+    },
+    {
+      "name": "Uma outra ação 1",
+      "count": 8159,
+      "score": 0.48
+    },
+    {
+      "name": "Uma outra ação 2",
+      "count": 9067,
+      "score": 0.21
+    },
+    {
+      "name": "Uma outra ação 3",
+      "count": 3212,
+      "score": 0.64
+    }
+  ],
+  "PRP": [
+    {
+      "name": "Tate Byrd",
+      "count": 8360,
+      "score": 0.62
+    },
+    {
+      "name": "Cynthia Durham",
+      "count": 9612,
+      "score": 0.16
+    },
+    {
+      "name": "Rachelle Calhoun",
+      "count": 2960,
+      "score": 0.19
+    },
+    {
+      "name": "Sharron Sharp",
+      "count": 1261,
+      "score": 0.95
+    },
+    {
+      "name": "Erna Combs",
+      "count": 5073,
+      "score": 0.65
+    },
+    {
+      "name": "Keri Nunez",
+      "count": 8377,
+      "score": 0.52
+    },
+    {
+      "name": "Sasha Kelly",
+      "count": 3260,
+      "score": 0.76
+    },
+    {
+      "name": "Charlene Sutton",
+      "count": 9386,
+      "score": 0.38
+    },
+    {
+      "name": "Velez Richmond",
+      "count": 3538,
+      "score": 0.23
+    },
+    {
+      "name": "Twila George",
+      "count": 7012,
+      "score": 0.83
+    }
+  ],
+  "ORG": [
+    {
+      "name": "OBLIQ",
+      "count": 6924,
+      "score": 0.13
+    },
+    {
+      "name": "FIBRODYNE",
+      "count": 8674,
+      "score": 0.18
+    },
+    {
+      "name": "SURETECH",
+      "count": 2529,
+      "score": 0.03
+    },
+    {
+      "name": "EURON",
+      "count": 1951,
+      "score": 0.84
+    },
+    {
+      "name": "BITENDREX",
+      "count": 5414,
+      "score": 0.66
+    },
+    {
+      "name": "XANIDE",
+      "count": 2973,
+      "score": 0.09
+    },
+    {
+      "name": "RUGSTARS",
+      "count": 5451,
+      "score": 0.32
+    },
+    {
+      "name": "QIAO",
+      "count": 1507,
+      "score": 0.53
+    },
+    {
+      "name": "DECRATEX",
+      "count": 1432,
+      "score": 0.44
+    },
+    {
+      "name": "VANTAGE",
+      "count": 180,
+      "score": 0.22
+    }
+  ],
+  "TIP": [
+    {
+      "name": "Tipo 1",
+      "count": 1787,
+      "score": 0.91
+    },
+    {
+      "name": "Tipo 2",
+      "count": 1134,
+      "score": 0.22
+    },
+    {
+      "name": "Tipo 3",
+      "count": 5750,
+      "score": 0.14
+    },
+    {
+      "name": "Tipo 4",
+      "count": 6247,
+      "score": 0.11
+    },
+    {
+      "name": "Tipo 5",
+      "count": 5853,
+      "score": 0.9
+    },
+    {
+      "name": "Tipo 6",
+      "count": 7115,
+      "score": 0.7
+    },
+    {
+      "name": "Tipo 7",
+      "count": 2831,
+      "score": 0.55
+    },
+    {
+      "name": "Tipo 8",
+      "count": 389,
+      "score": 0.62
+    },
+    {
+      "name": "Tipo 9",
+      "count": 2474,
+      "score": 0.45
+    },
+    {
+      "name": "Tipo 10",
+      "count": 394,
+      "score": 0.67
+    }
+  ],
+  "DAT": [
+    {
+      "name": "01/01/2020",
+      "count": 8477,
+      "score": 0.86
+    },
+    {
+      "name": "02/01/2020",
+      "count": 8144,
+      "score": 0.9
+    },
+    {
+      "name": "03/01/2020",
+      "count": 8149,
+      "score": 0.12
+    },
+    {
+      "name": "04/01/2020",
+      "count": 3132,
+      "score": 0.11
+    },
+    {
+      "name": "05/01/2020",
+      "count": 3881,
+      "score": 0.03
+    },
+    {
+      "name": "06/01/2020",
+      "count": 2541,
+      "score": 0.28
+    },
+    {
+      "name": "07/01/2020",
+      "count": 3258,
+      "score": 0.72
+    },
+    {
+      "name": "08/01/2020",
+      "count": 8363,
+      "score": 0.09
+    },
+    {
+      "name": "09/01/2020",
+      "count": 9253,
+      "score": 0.69
+    },
+    {
+      "name": "10/01/2020",
+      "count": 9555,
+      "score": 0.65
+    }
+  ]
+}
