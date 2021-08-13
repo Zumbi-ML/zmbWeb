@@ -4,7 +4,7 @@
 from setuptools import find_packages, setup
 
 with open("README.md") as f:
-    readme = f.read()
+    README = f.read()
 
 with open("LICENSE") as f:
     license = f.read()
@@ -13,10 +13,10 @@ setup(
     name="zumbi_web",
     version="0.0.1",
     description="The Zumbi Web Site and Apps",
-    long_description=readme,
+    long_description=app.run(),
     author="PUC-SP Intelligence Team",
     author_email="silvajo@pucsp.br",
-    url="https://github.com/j3ffsilva",
+    url="https://github.com/zumbi-ML",
     license=license,
     packages=find_packages(),
     test_suite="zumbi_web",

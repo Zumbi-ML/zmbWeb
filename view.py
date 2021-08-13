@@ -76,7 +76,7 @@ def nav_html(page="/"):
     styles["info"] = "navbar-link has-text-weight-semibold"
 
     highlighted_style = " msweb-is-underlined"
-    if page in ["/", "/search", "/newsearch"]:
+    if page in ["/", "/search"]:
         styles["search"] += highlighted_style
     elif page == "/extract":
         styles["extract"] += highlighted_style
@@ -86,15 +86,15 @@ def nav_html(page="/"):
     elif page == "/journals":
         # styles["journals"] += highlighted_style
         styles["info"] += highlighted_style
-    elif page == "/results":
-        styles["search"] += highlighted_style
+    #elif page == "/results":
+    #    styles["search"] += highlighted_style
     elif page is None:
         pass
     else:
         raise ValueError(f"Invalid page for highlighting: '{page}'")
 
     search = dcc.Link(
-        "Pesquisar Corpus", href="/newsearch", className=styles["search"]
+        "Pesquisar Corpus", href="/search", className=styles["search"]
     )
     extract = dcc.Link(
         "Analisar uma Matéria", href="/extract", className=styles["extract"]
@@ -116,7 +116,7 @@ def nav_html(page="/"):
     log_in = html.A(
         "PUC-SP",
         href="https://pucsp.br",
-        className="button is-dark is-small",
+        className="button is-dark",
     )
     buttons = html.Div(log_in, className="buttons")
     buttons_item = html.Div(buttons, className="navbar-item")
@@ -129,12 +129,11 @@ def nav_html(page="/"):
         className="navbar-menu is-active",
     )
 
-    nav_image = html.Img(src="/assets/logo-zumbi_v01_bw.png", height=400)
+    nav_image = html.Img(src="/assets/logo_mao_branca_v02.png", height=400)
     nav_image_container = html.A(
         nav_image,
         className="navbar-item",
-        #href="https://github.com/{project-github-name}",
-        href="#",
+        href="https://github.com/zumbi-ML",
     )
 
     burger = html.Span(**{"aria-hidden": True})
@@ -174,7 +173,7 @@ def footer_html():
     note_div = html.Div(
         [
             html.Span(
-                "Nota: Este motor de busca está em estágio beta com o propósito de coletar feedback"
+                "Nota: Este motor de busca está em estágio ALFA com o propósito de coletar feedback"
             )
         ]
     )
@@ -236,7 +235,7 @@ def outage_html():
     """
     common_text_size = "is-size-5"
     central_image = html.Img(
-        src="/assets/logo-zumbi_v01.png", style={"height": "100px"}
+        src="/assets/logo_zumbi_v02.png", style={"height": "100px"}
     )
     img_link = html.A(
         central_image,

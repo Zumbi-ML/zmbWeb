@@ -3,11 +3,9 @@
 import json
 import os
 
-
 """
 Utils for all apps.
 """
-
 
 def load_static_data_file(fname):
     """

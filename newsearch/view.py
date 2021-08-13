@@ -52,7 +52,7 @@ def subview_results_container_html():
     """
     The placeholder html block for results. This is updated via callback.
 
-    WANRING: for the loading animation to work correctly, it must be the direct
+    WARNING: for the loading animation to work correctly, it must be the direct
     parent of an html block which is being updated via callback.
 
     Args:

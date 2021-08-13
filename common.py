@@ -19,7 +19,7 @@ def logo_html():
     """
 
     logo = html.Img(
-        src="/assets/logo-zumbi_v01.png", style={"height": "100px"}
+        src="/assets/logo_zumbi_v02.png", style={"height": "100px"}
     )
 
     header_centering = html.Div(

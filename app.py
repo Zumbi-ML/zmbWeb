@@ -8,13 +8,13 @@ import about.view as bv
 import extract.logic as el
 import extract.view as av
 import journals.view as jv
-import newsearch.logic as sl
-import newsearch.view as sv
 from common import common_404_html
 from constants import cache_timeout, outage
-from newsearch.util import get_search_field_callback_args
 from view import core_view_html, nav_html, outage_html
 
+from search.util import get_search_field_callback_args
+import search.logic as sl
+import search.view as sv
 import search_results.logic as srl
 import search_results.view as srv
 from time import sleep
@@ -72,10 +72,10 @@ def display_app_html(path):
     Returns:
         (dash_html_components.Div): The app being shown, or a 404.
     """
-    if str(path).strip() in ["/", "/search", "/newsearch"] or not path:
+    if str(path).strip() in ["/", "/search"] or not path:
         return sv.app_view_html()
-    elif path == "/results":
-        return srv.app_view_html()
+    #elif path == "/results":
+    #    return srv.app_view_html()
     elif path == "/extract":
         return av.app_view_html()
     elif path == "/about":
@@ -220,18 +220,18 @@ def show_search_results(go_button_n_clicks, dropdown_value, search_text):
     """
 
     if search_text:
-        print(f"Search text 1: {search_text}")
+        #print(f"Search text 1: {search_text}")
         # Prevent from caching on n_clicks if the results aren"t empty
         @cache.memoize(timeout=cache_timeout)
         def memoize_wrapper(dropdown_value, search_text):
-            return srl.show_search_results(
+            return sl.show_search_results(
                 go_button_n_clicks, dropdown_value, search_text
             )
 
         return memoize_wrapper(dropdown_value, search_text)
     else:
-        print(f"Search text 2: {search_text}")
-        return srl.show_search_results(
+        #print(f"Search text 2: {search_text}")
+        return sl.show_search_results(
             go_button_n_clicks, dropdown_value, search_text
         )
 
