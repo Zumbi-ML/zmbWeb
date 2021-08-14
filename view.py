@@ -173,7 +173,7 @@ def footer_html():
     note_div = html.Div(
         [
             html.Span(
-                "Nota: Este motor de busca está em estágio ALFA com o propósito de coletar feedback"
+                "Nota: Este motor de busca está em estágio **ALFA** com o propósito de coletar feedback"
             )
         ]
     )

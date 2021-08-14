@@ -59,7 +59,7 @@ class Rester(object):
         else:
             self.preamble = environ.get('ZUMBI_ENDPOINT', None)
             if not self.preamble:
-                self.preamble = "https://localhost:5000"
+                self.preamble = "https://0.0.0.0:8081"
 
         self.session = requests.Session()
         self.session.headers = {"x-api-key": self.api_key}
@@ -78,32 +78,36 @@ class Rester(object):
 
     def _make_request(self, sub_url, payload=None, method="GET"):
         response = None
+        data = None
         url = self.preamble + sub_url
+        print(url)
         try:
-            #if method == "POST":
-            #    response = self.session.post(url, json=payload, verify=True)
-            #else:
-            #    response = self.session.get(url, params=payload, verify=True)
-
-            #if response.status_code in [200, 400]:
-            #    data = json.loads(response.text)
-
-            with open('json/file01.json') as f:
-                text = f.read()
-                data = json.loads(text)
-                #data = data[0]
-                #tdata = type(data)
-                #if isinstance(data, dict):
-                #    if data.get("warning"):
-                #        warnings.warn(data["warning"])
-                #    return data
+            if method == "POST":
+                response = self.session.post(url, json=payload, verify=True)
+            else:
+                #response = self.session.get(url, params=payload, verify=True)
+                response = self.session.get(url)
+            #print("response: " + str(response))
+            if response.status_code in [200, 400]:
+                data = json.loads(response.text)
+            #with open('json/file01.json') as f:
+            #    text = f.read()
+            #    data = json.loads(text)
+            #data = data[0]
+            #print("data: " + str(data))
+            #tdata = type(data)
+            #if isinstance(data, dict):
+            #    if data.get("warning"):
+            #        warnings.warn(data["warning"])
             return data
+            #return data
             #else:
             #    raise ZumbiRestError(response)
 
         except Exception as ex:
             msg = "{}. Content: {}".format(str(ex), response.content) \
                 if hasattr(response, "content") else str(ex)
+            print(msg)
             raise ZumbiRestError(msg)
 
     def __search(self, group_by, entities, text=None, elements=None, top_k=10):
@@ -145,11 +149,12 @@ class Rester(object):
         return self._make_request(sub_url, payload=query, method=method)
 
     def entities_search(self, entities, text=None, elements=None, top_k=10):
-        method = "POST"
-        sub_url = "/entities/"
+        method = "GET"
+        #sub_url = "/entities/"
+        sub_url = "/summary"
         query = {'query': {'entities': entities, 'text': text},
                  'limit': top_k}
-
+        #print(query)
         return self._make_request(sub_url, payload=query, method=method)
 
     def get_journals(self):

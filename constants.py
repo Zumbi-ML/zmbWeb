@@ -18,14 +18,12 @@ db_stats = load_static_data_file("db_statistics.json")
 example_searches = load_static_data_file("example_searches.json")
 sample_abstracts = load_static_data_file("sample_abstracts.json")
 
-
-# Artifacts for making tests run easier
-fake_endpoint = "not_a_real_endpoint"
-fake_api_key = "not_a_real_api_key"
+ZMB_ENDPOINT = "http://0.0.0.0:8081"
+ZMB_API_KEY = "not_a_real_api_key"
 
 # The API endpoint URL defines the Rester
-endpoint = os.environ.get("ZUMBI_ENDPOINT", fake_endpoint)
-api_key = os.environ.get("ZUMBI_API_KEY", fake_api_key)
+endpoint = os.environ.get("ZUMBI_ENDPOINT", ZMB_ENDPOINT)
+api_key = os.environ.get("ZUMBI_API_KEY", ZMB_API_KEY)
 rester = Rester(endpoint=endpoint, api_key=api_key)
 
 
