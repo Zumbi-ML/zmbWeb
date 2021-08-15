@@ -37,24 +37,30 @@ elastic_pass = os.environ.get("ELASTIC_PASS", fake_elastic_credential)
 
 # The mapping of entity type to shortcode
 entity_shortcode_map = {
-    "vítima": "VIT",
-    "perpetrador": "PRP",
-    "local": "LOC",
-    "organização": "ORG",
-    "ação": "ACA",
-    "quando": "DAT",
-    "tipo": "TIP",
+    "pes": "PER",
+    "mid": "MED",
+    "educ": "EDU",
+    "com": "ORG",
+    "gov": "GOV",
+    "cid": "CITY",
+    "pais": "CTRY",
+    "pol": "POL",
+    "obra": "WRK",
+    "mov": "MOV"
 }
 
 # The mapping of entity type to color
 entity_color_map = {
-    "vítima": "blue",
-    "perpetrador": "purple",
-    "local": "orange",
-    "organização": "turq",
-    "ação": "pink",
-    "quando": "red",
-    "tipo": "green",
+    "pes": "blue",
+    "mid": "purple",
+    "educ": "orange",
+    "com": "turq",
+    "gov": "pink",
+    "cid": "red",
+    "pais": "green",
+    "pol": "blue",
+    "obra": "purple",
+    "mov": "orange"
 }
 
 # The mapping of all search filters

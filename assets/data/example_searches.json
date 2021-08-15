@@ -1,8 +1,13 @@
 [
-  "vítima: Miguel",
-  "perpetrador: polícia, ação: homícidio",
-  "local: rio de janeiro, perpetrador: polícia militar",
-  "organização: Nubank",
-  "tipo: cotas estudantis, local: SP",
-  "vítima: George Floyd, local: EUA"
+  "pes: Geroge Floyd",
+  "mid: BBC News",
+  "educ: USP",
+  "com: Nubank",
+  "gov: Superior Tribunal Federal",
+  "cid: São Paulo",
+  "pais: Brasil",
+  "pol: Polícia Militar",
+  "obra: Pequeno Manual Antirracista",
+  "mov: Black Lives Matter",
+  "texto: Jovem negro é morto"
 ]

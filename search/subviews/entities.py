@@ -67,10 +67,10 @@ def all_score_tables_html(results_dict):
     row1 = html.Div(
         [
             single_entity_score_table_html(
-                results_dict["LOC"], "Local", half
+                results_dict["PER"], "Pessoa", half
             ),
             single_entity_score_table_html(
-                results_dict["TIP"], "Tipo", half
+                results_dict["MED"], "Mídia", half
             ),
         ],
         className=columns_classes,
@@ -79,10 +79,10 @@ def all_score_tables_html(results_dict):
     row2 = html.Div(
         [
             single_entity_score_table_html(
-                results_dict["PRP"], "Perpetrador", half
+                results_dict["EDU"], "Instituição de Ensino/Pesquisa", half
             ),
             single_entity_score_table_html(
-                results_dict["ORG"], "Organização", half
+                results_dict["ORG"], "Organização Comercial", half
             ),
         ],
         className=columns_classes,
@@ -91,18 +91,34 @@ def all_score_tables_html(results_dict):
     row3 = html.Div(
         [
             single_entity_score_table_html(
-                results_dict["ACA"], "Ação", third
+                results_dict["GOV"], "Órgão Governamental", third
             ),
             single_entity_score_table_html(
-                results_dict["DAT"], "Quando", third
+                results_dict["CITY"], "Cidade", third
             ),
             single_entity_score_table_html(
-                results_dict["VIT"], "Vítima", third
+                results_dict["CTRY"], "País", third
             ),
         ],
         className=columns_classes,
     )
-    return html.Div([row1, row2, row3])
+
+    row4 = html.Div(
+        [
+            single_entity_score_table_html(
+                results_dict["POL"], "Polícia", third
+            ),
+            single_entity_score_table_html(
+                results_dict["WRK"], "Obra", third
+            ),
+            single_entity_score_table_html(
+                results_dict["MOV"], "Movimento", third
+            ),
+        ],
+        className=columns_classes,
+    )
+
+    return html.Div([row1, row2, row3, row4])
 
 
 def single_entity_score_table_html(most_common, entity_type, width):
@@ -134,17 +150,17 @@ def single_entity_score_table_html(most_common, entity_type, width):
     header_table_label = html.Span(f": {table_label}")
 
     header_entity_type = html.Th([header_entity_type, header_table_label])
-    header_score = html.Th("escore")
+    header_score = html.Th("Contagem")
     header = html.Tr([header_entity_type, header_score])
 
     rows = [None] * n_results
 
     row_number = 0
     for dic in most_common:
-        ent, count, score = dic['name'], dic['count'], dic['score']
+        ent, count = dic['name'], dic['count']
         entity = html.Td(ent, className="has-width-50")
-        score = html.Td("{:.2f}".format(score), className="has-width-50")
-        rows[row_number] = html.Tr([entity, score])
+        count = html.Td("{:.2f}".format(count), className="has-width-50")
+        rows[row_number] = html.Tr([entity, count])
         row_number += 1
         if row_number == MAX_N_ROWS_FOR_EACH_ENTITY_TABLE - 1:
             break

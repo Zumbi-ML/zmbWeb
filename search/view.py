@@ -52,7 +52,7 @@ def subview_results_container_html():
     """
     The placeholder html block for results. This is updated via callback.
 
-    WANRING: for the loading animation to work correctly, it must be the direct
+    WARNING: for the loading animation to work correctly, it must be the direct
     parent of an html block which is being updated via callback.
 
     Args:
@@ -129,7 +129,7 @@ def search_bar_and_buttons_html():
         [
             "Pesquise ",
             n_abstracts_link,
-            " matérias jornalísticas com inteligência artificial",
+            " matérias jornalísticas sobre a discriminação racial com I.A.",
         ],
         className="is-size-4-desktop has-margin-5",
     )
@@ -302,36 +302,45 @@ def guided_search_box_elastic_html(field):
         field (str): The field type. Either a lowercase entity or "texto".
     """
     placeholders = {
-        "vítima": "Miguel, João Pedro,...",
-        "local": "São Paulo, RJ, EUA, ...",
-        "tipo": "violência policial, cotas, ...",
-        "ação": "homicídio,...",
-        "perpetrador": "polícia militar, anônimo...",
-        "organização": "Nubank,...",
-        "quando": "ano passado, 2020, ...",
-        "texto": "jovem negro é morto...",
+        "pes": "Miguel, João Pedro,...",
+        "mid": "BBC News, Facebook, Instagram, R7, ...",
+        "educ": "São Paulo, RJ, EUA, ...",
+        "com": "Nubank, iFood, Rappi, Itaú, ...",
+        "gov": "Superior Tribunal Federal, Casa Civil, ...",
+        "cid": "São Paulo, Rio de Janeiro, Nova Iorque, ...",
+        "pais": "Brasil, EUA, ...",
+        "pol": "polícia militar, polícia civil, fbi, ...",
+        "obra": "nomes de obras literárias, filmes, musicais, ...",
+        "mov": "Black Lives Matter, Panteras Negras, NAACP, ...",
+        "texto": "Jovem negro é morto..."
     }
 
     ES_field_dict = {
-        "vítima": "materials",
-        "local": "properties",
-        "tipo": "applications",
-        "ação": "descriptors",
-        "perpetrador": "characterization_methods",
-        "organização": "synthesis_methods",
-        "quando": "structure_phase_labels",
-        "texto": "zumbi_production.entries",
+        "pes": "Nomes de pessoas",
+        "mid": "Nomes de veículos",
+        "educ": "Nomes de instituições de pesquisa e educação",
+        "com": "Nomes de organizações comerciais",
+        "gov": "Nomes de orgãos governamentais",
+        "cid": "Nomes de cidades",
+        "pais": "Nomes de países",
+        "obra": "nomes de obras literárias, filmes, musicais, ...",
+        "pol": "Nomes de polícias",
+        "mov": "Nomes de movimentos, ...",
+        "texto": "Texto complementar para incrementar a busca."
     }
 
     tooltip_texts = {
-        "vítima": "Nomes de vítimas de racismo e discriminação.",
-        "local": "Nomes do local envolvido na discriminação.",
-        "tipo": "Tipo do racismo envolvido.",
-        "ação": "Ação discriminatória.",
-        "perpetrador": "Nome do perpetrador",
-        "organização": "Nomes de organizações envolvidas em discriminação",
-        "quando": "A data em que ocorreu a discriminação.",
-        "texto": "Texto complementar para incrementar a busca.",
+        "pes": "Nomes de pessoas",
+        "mid": "Nomes de veículos",
+        "educ": "Nomes de instituições de pesquisa e educação",
+        "com": "Nomes de organizações comerciais",
+        "gov": "Nomes de organizações governamentais",
+        "cid": "Nomes de cidades",
+        "pais": "Nomes de países",
+        "obra": "nomes de obras literárias, filmes, musicais, ...",
+        "pol": "Nomes de polícias",
+        "mov": "Nomes de movimentos, ...",
+        "texto": "Texto complementar para incrementar a busca."
     }
 
     color = search_filter_color_map[field]

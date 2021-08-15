@@ -317,15 +317,16 @@ def highlight_entities_html(tagged_doc):
 
     # Mapping entity shortcodes returned by the rester to their entity labels
     local_entity_shortcode_map = {
-        "VIT": "vítima",
-        "TIP": "tipo",
-        "LOC": "local",
-        "DAT": "quando",
-        "ORG": "organização",
-        "PRP": "perpetrador",
-        "ACA": "ação",
-        "PVL": "property value",
-        "PUT": "property unit",
+        "PER": "pessoa",
+        "MED": "mídia",
+        "EDU": "org. educação/pesquisa",
+        "ORG": "org. comercial",
+        "GOV": "org. governamental",
+        "CITY": "cidade",
+        "CTRY": "país",
+        "POL": "polícia",
+        "WRK": "obra",
+        "MOV": "movimento",
         "O": "other",
     }
 
