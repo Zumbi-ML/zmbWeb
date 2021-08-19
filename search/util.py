@@ -61,7 +61,6 @@ def parse_search_box(search_text):
         entity_query (dict): The entity query in rester working context
         raw_text (str): The raw text to pass into the text field
     """
-    print("Start parsing search box")
     if not search_text.strip():
         raise ZumbiWebSearchError("No text entered!")
 

@@ -1,16 +1,1 @@
-{
-  "abstracts": 1984134,
-  "materials": 290952,
-  "entities": 518026,
-  "journals": ["G1 notícias",
-    "Folha de São Paulo",
-    "Estadão",
-    "UOL notícias",
-    "R7 notícias",
-    "IG",
-    "MSN",
-    "Yahoo!Notícias",
-    "CLICRBS"
-  ],
-  "timestamp": "2020/12/20-15:53:12"
-}
+{"abstracts": 100, "entities": 302, "materials": 0, "journals": ["G1 not\u00edcias", "Folha de S\u00e3o Paulo"], "timestamp": "2021/08/19-19:39:31"}

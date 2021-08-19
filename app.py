@@ -193,8 +193,6 @@ def sum_all_fields_and_buttons_n_submits(*all_n_clicks):
             If this is voided correctly in another callback, it will be either
             0 or 1.
     """
-    print("sum_all_fields_and_buttons_n_submits:")
-    print(f"\t=>{all_n_clicks}")
     return sl.sum_all_fields_and_buttons_n_submits(*all_n_clicks)
 
 
@@ -222,7 +220,6 @@ def show_search_results(go_button_n_clicks, dropdown_value, search_text):
     """
 
     if search_text:
-        print(f"Search text 1: {search_text}")
         # Prevent from caching on n_clicks if the results aren"t empty
         @cache.memoize(timeout=cache_timeout)
         def memoize_wrapper(dropdown_value, search_text):
@@ -232,7 +229,6 @@ def show_search_results(go_button_n_clicks, dropdown_value, search_text):
 
         return memoize_wrapper(dropdown_value, search_text)
     else:
-        print(f"Search text 2: {search_text}")
         return sl.show_search_results(
             go_button_n_clicks, dropdown_value, search_text
         )

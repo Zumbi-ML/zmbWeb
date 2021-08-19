@@ -172,13 +172,12 @@ class Rester(object):
         Returns:
             dictionary of stats. e.g
               {
-                entities_count': 518026
+                entities': 518026
               }
-
         """
 
         method = "GET"
-        sub_url = "/stats/"
+        sub_url = "/stats"
 
         return self._make_request(sub_url, method=method)
 

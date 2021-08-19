@@ -6,12 +6,11 @@ from datetime import datetime
 
 from constants import rester
 
-
 """
 Generates the data for showing database statistics (preventing redundant
 rester calls and prevent having to do caching nonsense).
 
-Output: /zumbi_web/assets/data/db_statistics.json
+Output: /zmbWeb/assets/data/db_statistics.json
 
 To be run by either:
 (a) The server host upon deployment (e.g., Heroku postdeploy)
@@ -42,14 +41,10 @@ def get_debug_stats():
 
     """
     stats = {
-        "materials": 298616,
         "entities": 525690,
-        "abstracts": 4951267,
         "journals": [
-            "Journal of Materials Chemistry, A",
-            "Journal of Materials Chemistry, B",
-            "Journal of Materials Chemistry, C",
-            "Concurrency and Computation",
+            "Globo, A",
+            "Folha de São Paulo, B",
         ]
         * 10,
         "timestamp": get_timestamp(),
@@ -67,23 +62,21 @@ def get_live_stats():
     """
     rstats = rester.get_db_stats()
     fstats = {
-        "abstracts": rstats["abstract_count"],
-        "materials": rstats["materials_count"],
-        "entities": rstats["entities_count"],
-        # "journals": rester.get_journals(),
-        "journal": None,
+        "abstracts": rstats["abstracts"],
+        "entities": rstats["entities"],
+        "materials": rstats["materials"],
+        "journals": rstats["journals"],
         "timestamp": get_timestamp(),
     }
-
     return fstats
 
 
 if __name__ == "__main__":
-    raise ValueError(
-        "Probably not going to work, need to make sure that "
-        "rester get_journals is returning a list and not a mongo"
-        "doc thing"
-    )
+    #raise ValueError(
+    #    "Probably not going to work, need to make sure that "
+    #    "rester get_journals is returning a list and not a mongo"
+    #    "doc thing"
+    #)
 
     stats = get_live_stats()
     # stats = get_debug_stats()
@@ -93,7 +86,7 @@ if __name__ == "__main__":
     thisdir = os.path.abspath(os.path.dirname(__file__))
     target = os.path.abspath(
         os.path.join(
-            thisdir, "../zumbi_web/assets/data/db_statistics.json"
+            thisdir, "assets/data/db_statistics.json"
         )
     )
 

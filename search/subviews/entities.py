@@ -38,8 +38,6 @@ def entities_results_html(entity_query, raw_text):
     results = rester.entities_search(
         entity_query, text=raw_text, top_k=MAX_N_ROWS_FOR_EACH_ENTITY_TABLE
     )
-    print("results")
-    print(f"type(results): {str(type(results))}")
     # It seems that results should
     if results is None or not any([v for v in results.values()]):
         return entities_no_results_html
@@ -66,7 +64,6 @@ def all_score_tables_html(results_dict):
 
     half = "is-half"
     third = "is-one-third"
-    print("results_dict" + str(results_dict))
     row1 = html.Div(
         [
             single_entity_score_table_html(
