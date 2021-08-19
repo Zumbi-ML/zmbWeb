@@ -38,6 +38,9 @@ def entities_results_html(entity_query, raw_text):
     results = rester.entities_search(
         entity_query, text=raw_text, top_k=MAX_N_ROWS_FOR_EACH_ENTITY_TABLE
     )
+    print("results")
+    print(f"type(results): {str(type(results))}")
+    # It seems that results should
     if results is None or not any([v for v in results.values()]):
         return entities_no_results_html
     else:
@@ -63,14 +66,14 @@ def all_score_tables_html(results_dict):
 
     half = "is-half"
     third = "is-one-third"
-
+    print("results_dict" + str(results_dict))
     row1 = html.Div(
         [
             single_entity_score_table_html(
-                results_dict["PER"], "Pessoa", half
+                results_dict["PER"], "pes", half
             ),
             single_entity_score_table_html(
-                results_dict["MED"], "Mídia", half
+                results_dict["MED"], "mid", half
             ),
         ],
         className=columns_classes,
@@ -79,10 +82,10 @@ def all_score_tables_html(results_dict):
     row2 = html.Div(
         [
             single_entity_score_table_html(
-                results_dict["EDU"], "Instituição de Ensino/Pesquisa", half
+                results_dict["EDU"], "educ", half
             ),
             single_entity_score_table_html(
-                results_dict["ORG"], "Organização Comercial", half
+                results_dict["ORG"], "com", half
             ),
         ],
         className=columns_classes,
@@ -91,13 +94,13 @@ def all_score_tables_html(results_dict):
     row3 = html.Div(
         [
             single_entity_score_table_html(
-                results_dict["GOV"], "Órgão Governamental", third
+                results_dict["GOV"], "gov", third
             ),
             single_entity_score_table_html(
-                results_dict["CITY"], "Cidade", third
+                results_dict["CITY"], "cid", third
             ),
             single_entity_score_table_html(
-                results_dict["CTRY"], "País", third
+                results_dict["CTRY"], "pais", third
             ),
         ],
         className=columns_classes,
@@ -106,13 +109,13 @@ def all_score_tables_html(results_dict):
     row4 = html.Div(
         [
             single_entity_score_table_html(
-                results_dict["POL"], "Polícia", third
+                results_dict["POL"], "pol", third
             ),
             single_entity_score_table_html(
-                results_dict["WRK"], "Obra", third
+                results_dict["WRK"], "obra", third
             ),
             single_entity_score_table_html(
-                results_dict["MOV"], "Movimento", third
+                results_dict["MOV"], "mov", third
             ),
         ],
         className=columns_classes,
@@ -150,7 +153,7 @@ def single_entity_score_table_html(most_common, entity_type, width):
     header_table_label = html.Span(f": {table_label}")
 
     header_entity_type = html.Th([header_entity_type, header_table_label])
-    header_score = html.Th("Contagem")
+    header_score = html.Th("Cont")
     header = html.Tr([header_entity_type, header_score])
 
     rows = [None] * n_results

@@ -55,12 +55,13 @@ def parse_search_box(search_text):
 
     Args:
         search_text (Str): The text in the search box, e.g.
-            "material: PbTe, property: thermoelectric"
+            "pes: George Floyd, ctry: EUA"
 
     Returns:
         entity_query (dict): The entity query in rester working context
         raw_text (str): The raw text to pass into the text field
     """
+    print("Start parsing search box")
     if not search_text.strip():
         raise ZumbiWebSearchError("No text entered!")
 

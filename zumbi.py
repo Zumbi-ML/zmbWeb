@@ -80,14 +80,12 @@ class Rester(object):
         response = None
         data = None
         url = self.preamble + sub_url
-        print(url)
         try:
             if method == "POST":
                 response = self.session.post(url, json=payload, verify=True)
             else:
                 #response = self.session.get(url, params=payload, verify=True)
                 response = self.session.get(url)
-            #print("response: " + str(response))
             if response.status_code in [200, 400]:
                 data = json.loads(response.text)
             #with open('json/file01.json') as f:
@@ -107,7 +105,6 @@ class Rester(object):
         except Exception as ex:
             msg = "{}. Content: {}".format(str(ex), response.content) \
                 if hasattr(response, "content") else str(ex)
-            print(msg)
             raise ZumbiRestError(msg)
 
     def __search(self, group_by, entities, text=None, elements=None, top_k=10):
@@ -154,7 +151,6 @@ class Rester(object):
         sub_url = "/summary"
         query = {'query': {'entities': entities, 'text': text},
                  'limit': top_k}
-        #print(query)
         return self._make_request(sub_url, payload=query, method=method)
 
     def get_journals(self):
@@ -175,9 +171,9 @@ class Rester(object):
 
         Returns:
             dictionary of stats. e.g
-              {'abstract_count': 4941666,
-               'entities_count': 518026,
-               'materials_count': 290952}
+              {
+                entities_count': 518026
+              }
 
         """
 
