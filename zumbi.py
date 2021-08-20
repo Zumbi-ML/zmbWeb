@@ -4,6 +4,7 @@ import requests
 import json
 import warnings
 from os import environ
+from requesterfactory import RequesterFactory
 
 """
 This module provides classes to interface with the Zumbi REST
@@ -77,31 +78,10 @@ class Rester(object):
         self.session.close()
 
     def _make_request(self, sub_url, payload=None, method="GET"):
-        response = None
-        data = None
+        requester = RequesterFactory().create(self.session, "dummy")
         url = self.preamble + sub_url
         try:
-            if method == "POST":
-                response = self.session.post(url, json=payload, verify=True)
-            else:
-                #response = self.session.get(url, params=payload, verify=True)
-                response = self.session.get(url)
-            if response.status_code in [200, 400]:
-                data = json.loads(response.text)
-            #with open('json/file01.json') as f:
-            #    text = f.read()
-            #    data = json.loads(text)
-            #data = data[0]
-            #print("data: " + str(data))
-            #tdata = type(data)
-            #if isinstance(data, dict):
-            #    if data.get("warning"):
-            #        warnings.warn(data["warning"])
-            return data
-            #return data
-            #else:
-            #    raise ZumbiRestError(response)
-
+            return requester.make_request(url, method, payload, True)
         except Exception as ex:
             msg = "{}. Content: {}".format(str(ex), response.content) \
                 if hasattr(response, "content") else str(ex)
@@ -171,7 +151,7 @@ class Rester(object):
 
         Returns:
             dictionary of stats. e.g
-              {
+               {
                 entities': 518026
               }
         """
