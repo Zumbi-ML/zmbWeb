@@ -15,8 +15,6 @@ from view import core_view_html, nav_html, outage_html
 from search.util import get_search_field_callback_args
 import search.logic as sl
 import search.view as sv
-import search_results.logic as srl
-import search_results.view as srv
 from time import sleep
 
 """
@@ -74,8 +72,6 @@ def display_app_html(path):
     """
     if str(path).strip() in ["/", "/search"] or not path:
         return sv.app_view_html()
-    #elif path == "/results":
-    #    return srv.app_view_html()
     elif path == "/extract":
         return av.app_view_html()
     elif path == "/about":

@@ -42,7 +42,7 @@ class Rester(object):
             If so, it will use that environment variable. This makes
             easier for heavy users to simply add this environment variable to
             their setups and MatstractRester can then be called without any arguments.
-        endpoint (str): Url of endpoint to access the Zumbi REST
+        endpoint (str): URL of endpoint to access the Zumbi REST
             interface. Defaults to the standard address, but can be changed to other
             urls implementing a similar interface.
     """
