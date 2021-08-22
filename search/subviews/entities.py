@@ -92,16 +92,16 @@ def all_score_tables_html(results_dict):
             single_entity_score_table_html( results_dict[entity_type], front_ent_type, third )
         )
 
-        is_k_div_by_3 = k % 3 == 0
+        reached_max_n_columns = k % MAX_N_COLUMNS == 0
 
-        # If k is not divisible by 3 and is not the last element,
+        # If k is not divisible by MAX_N_COLUMNS (3) and is not the last element,
         # then continue populating div_elems
-        if (k != len(results_dict) and not is_k_div_by_3):
+        if (k != len(results_dict) and not reached_max_n_columns):
             continue
 
         div_rows.append(html.Div(div_elems, className=columns_classes))
 
-        if (is_k_div_by_3):
+        if (reached_max_n_columns):
             div_elems = []
 
     return html.Div(div_rows)
