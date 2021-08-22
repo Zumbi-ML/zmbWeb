@@ -6,11 +6,7 @@ import re
 from zumbi import ZumbiRestError
 from common import common_rester_error_html
 from constants import example_searches, valid_search_filters
-from search.common import cobalt_warning_html
-from search.subviews.abstracts import abstracts_results_html
 from search.subviews.entities import entities_results_html
-from search.subviews.everything import everything_results_html
-from search.subviews.materials import materials_results_html
 from search.util import (
     ZumbiWebSearchError,
     parse_search_box,
@@ -19,7 +15,6 @@ from search.view import (
     malformed_query_warning_html,
     no_query_warning_html,
 )
-
 
 """
 Callback logic for callbacks in the search app.
@@ -49,40 +44,20 @@ def show_search_results(go_button_n_clicks, dropdown_value, search_text):
             if not search_text:
                 return no_query_warning_html()
 
-            # TODO: uncomment later
-            #try:
-            #    entity_query, raw_text = parse_search_box(search_text)
-            #except ZumbiWebSearchError:
-            #    return malformed_query_warning_html(search_text)
+            try:
+                entity_query, raw_text = parse_search_box(search_text)
+            except ZumbiWebSearchError:
+                return malformed_query_warning_html(search_text)
 
             entity_query, raw_text = parse_search_box(search_text)
 
-            """
-            # TODO: Uncomment later
-            if dropdown_value == "abstracts":
-                results = abstracts_results_html(entity_query, raw_text)
-            elif dropdown_value == "materials":
-                results = materials_results_html(entity_query, raw_text)
-            elif dropdown_value == "entities":
-                results = entities_results_html(entity_query, raw_text)
-            elif dropdown_value == "everything":
-                results = everything_results_html(entity_query, raw_text)
-            else:
-                raise ValueError(
-                    f"Dropdown selection {dropdown_value} not valid!"
-                )
-            if is_cobalt_search(entity_query, raw_text):
-                results = cobalt_warning_html(results)
-            """
-            results = entities_results_html(entity_query, raw_text)
-            return results
+            return entities_results_html(entity_query, raw_text)
         except ZumbiRestError:
             rester_error = (
                 "Este sistema ainda está em construção. "
                 "Por favor, nos visite num futuro próximo. "
             )
             return common_rester_error_html(rester_error)
-
 
 def sum_all_fields_and_buttons_n_submits(*all_n_clicks):
     """

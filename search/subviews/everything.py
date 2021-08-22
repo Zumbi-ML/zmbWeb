@@ -3,19 +3,10 @@
 import dash_html_components as html
 
 from search.common import no_results_html
-from search.subviews.abstracts import (
-    abstracts_no_results_html,
-    abstracts_results_html,
-)
 from search.subviews.entities import (
     entities_no_results_html,
     entities_results_html,
 )
-from search.subviews.materials import (
-    materials_no_results_html,
-    materials_results_html,
-)
-
 
 """
 Functions for defining the results container when all results are desired.
@@ -55,15 +46,11 @@ def everything_results_html(entity_query, raw_text):
     )
 
     entities_results = entities_results_html(entity_query, raw_text)
-    materials_results = materials_results_html(entity_query, raw_text)
-    abstracts_results = abstracts_results_html(entity_query, raw_text)
     no_results = no_results_html(pre_label=None)
 
     if all(
         [
             entities_results == entities_no_results_html,
-            materials_results == materials_no_results_html,
-            abstracts_results == abstracts_no_results_html,
         ]
     ):
         return no_results
@@ -72,8 +59,6 @@ def everything_results_html(entity_query, raw_text):
             [
                 scroll_down_container,
                 entities_results,
-                materials_results,
-                abstracts_results,
             ],
             className="container",
         )

@@ -86,8 +86,6 @@ def nav_html(page="/"):
     elif page == "/journals":
         # styles["journals"] += highlighted_style
         styles["info"] += highlighted_style
-    #elif page == "/results":
-    #    styles["search"] += highlighted_style
     elif page is None:
         pass
     else:
@@ -173,7 +171,7 @@ def footer_html():
     note_div = html.Div(
         [
             html.Span(
-                "Nota: Este motor de busca está em estágio **ALFA** com o propósito de coletar feedback"
+                "Nota: Este motor de busca está em estágio ALFA com o propósito de coletar feedback"
             )
         ]
     )
@@ -263,6 +261,6 @@ def outage_html():
         [img_link, title, explanation1, explanation2, contact],
         className="has-margin-30",
     )
-
+    
     container = html.Div(inner_container, className="container")
     return container
