@@ -129,7 +129,7 @@ def search_bar_and_buttons_html():
         [
             "Pesquise ",
             n_abstracts_link,
-            " matérias jornalísticas sobre a discriminação racial com I.A.",
+            " matérias jornalísticas sobre a discriminação racial com IA",
         ],
         className="is-size-4-desktop has-margin-5",
     )

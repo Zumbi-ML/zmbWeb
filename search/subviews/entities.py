@@ -18,9 +18,25 @@ Please do not define callback logic in this file.
 # Maximum number of rows shown for each entity table. 10 usually looks good.
 MAX_N_ROWS_FOR_EACH_ENTITY_TABLE = 10
 
+# Maximum number of columns to fit on the screen
+MAX_N_COLUMNS = 3
+
 big_label_and_disclaimer = big_label_and_disclaimer_html("entities")
 entities_no_results_html = no_results_html(pre_label=big_label_and_disclaimer)
 
+db2front_ent_types = {
+    "PER": "pes",
+    "MED": "mid",
+    "EDU": "educ",
+    "ORG": "com",
+    "GOV": "gov",
+    "CITY": "cid",
+    "CTRY": "pais",
+    "POL": "pol",
+    "WRK": "obra",
+    "MOV": "mov",
+    "text": "texto"
+}
 
 def entities_results_html(entity_query, raw_text):
     """
@@ -64,62 +80,31 @@ def all_score_tables_html(results_dict):
 
     half = "is-half"
     third = "is-one-third"
-    row1 = html.Div(
-        [
-            single_entity_score_table_html(
-                results_dict["PER"], "pes", half
-            ),
-            single_entity_score_table_html(
-                results_dict["MED"], "mid", half
-            ),
-        ],
-        className=columns_classes,
-    )
 
-    row2 = html.Div(
-        [
-            single_entity_score_table_html(
-                results_dict["EDU"], "educ", half
-            ),
-            single_entity_score_table_html(
-                results_dict["ORG"], "com", half
-            ),
-        ],
-        className=columns_classes,
-    )
+    div_rows, div_elems = [], []
 
-    row3 = html.Div(
-        [
-            single_entity_score_table_html(
-                results_dict["GOV"], "gov", third
-            ),
-            single_entity_score_table_html(
-                results_dict["CITY"], "cid", third
-            ),
-            single_entity_score_table_html(
-                results_dict["CTRY"], "pais", third
-            ),
-        ],
-        className=columns_classes,
-    )
+    k = 0 # an entity type counter
+    for entity_type in results_dict.keys():
+        k += 1
 
-    row4 = html.Div(
-        [
-            single_entity_score_table_html(
-                results_dict["POL"], "pol", third
-            ),
-            single_entity_score_table_html(
-                results_dict["WRK"], "obra", third
-            ),
-            single_entity_score_table_html(
-                results_dict["MOV"], "mov", third
-            ),
-        ],
-        className=columns_classes,
-    )
+        front_ent_type = db2front_ent_types.get(entity_type)
+        div_elems.append(
+            single_entity_score_table_html( results_dict[entity_type], front_ent_type, third )
+        )
 
-    return html.Div([row1, row2, row3, row4])
+        is_k_div_by_3 = k % 3 == 0
 
+        # If k is not divisible by 3 and is not the last element,
+        # then continue populating div_elems
+        if (k != len(results_dict) and not is_k_div_by_3):
+            continue
+
+        div_rows.append(html.Div(div_elems, className=columns_classes))
+
+        if (is_k_div_by_3):
+            div_elems = []
+
+    return html.Div(div_rows)
 
 def single_entity_score_table_html(most_common, entity_type, width):
     """
@@ -127,7 +112,7 @@ def single_entity_score_table_html(most_common, entity_type, width):
 
     Args:
         most_common ([str]): The most common entities of this type.
-        entity_type (str): The entity type (e.g., "vítima")
+        entity_type (str): The entity type (e.g., "pessoa")
         width (the width of the table in terms of the table container). Valid
             widths are specified according to bulma column widths, e.g.,
             "is-half".

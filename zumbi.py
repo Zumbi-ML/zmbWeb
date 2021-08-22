@@ -78,7 +78,7 @@ class Rester(object):
         self.session.close()
 
     def _make_request(self, sub_url, payload=None, method="GET"):
-        requester = RequesterFactory().create(self.session, "dummy")
+        requester = RequesterFactory().create(self.session, "api")
         url = self.preamble + sub_url
         try:
             return requester.make_request(url, method, payload, True)
@@ -126,11 +126,12 @@ class Rester(object):
         return self._make_request(sub_url, payload=query, method=method)
 
     def entities_search(self, entities, text=None, elements=None, top_k=10):
-        method = "GET"
-        #sub_url = "/entities/"
-        sub_url = "/summary"
+        method = "POST"
+        sub_url = "/entities"
+        #sub_url = "/summary"
         query = {'query': {'entities': entities, 'text': text},
                  'limit': top_k}
+
         return self._make_request(sub_url, payload=query, method=method)
 
     def get_journals(self):
@@ -147,12 +148,12 @@ class Rester(object):
 
     def get_db_stats(self):
         """
-         Get the statistics about the Matscholar db.
+         Get the statistics about the zumbi db.
 
         Returns:
             dictionary of stats. e.g
                {
-                entities': 518026
+                entities': 100
               }
         """
 

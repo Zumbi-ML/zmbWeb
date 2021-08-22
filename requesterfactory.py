@@ -17,8 +17,7 @@ class APIRequester:
         if method == "POST":
             response = self.session.post(url, json=payload, verify=True)
         else:
-            #response = self.session.get(url, params=payload, verify=True)
-            response = self.session.get(url)
+            response = self.session.get(url, params=payload, verify=True)
         if response.status_code in [200, 400]:
             data = json.loads(response.text)
         return data
