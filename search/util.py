@@ -5,7 +5,7 @@ import re
 
 from dash.dependencies import Input, Output, State
 
-from constants import valid_search_filters
+from entity_code import entity_code
 
 """
 All utility functions for search.
@@ -44,7 +44,7 @@ def get_search_field_callback_args(as_type="state", return_component="value"):
     t = type_dict[as_type]
 
     filters = []
-    for f in valid_search_filters:
+    for f in entity_code.map.keys():
         filters.append(t("search-" + f + "-filters-input", return_component))
     return filters
 
@@ -55,7 +55,7 @@ def parse_search_box(search_text):
 
     Args:
         search_text (Str): The text in the search box, e.g.
-            "pes: George Floyd, ctry: EUA"
+            "person: George Floyd, country: USA"
 
     Returns:
         entity_query (dict): The entity query in rester working context
@@ -64,18 +64,18 @@ def parse_search_box(search_text):
     if not search_text.strip():
         raise ZumbiWebSearchError("No text entered!")
 
-    for f in valid_search_filters:
+    for f in entity_code.valid_search_filters:
         if f in search_text.lower():
             redata = re.compile(re.escape(f), re.IGNORECASE)
             search_text = redata.sub(f, search_text)
 
-    re_delimiters = "|".join(valid_search_filters)
+    re_delimiters = "|".join(entity_code.valid_search_filters)
     field_patterns = re.findall(f"({re_delimiters}):", search_text)
 
     if len(set(field_patterns)) < len(field_patterns):
         raise ZumbiWebSearchError("Redundant entity fields entered!")
 
-    if not all([p in valid_search_filters for p in field_patterns]):
+    if not all([p in entity_code.valid_search_filters for p in field_patterns]):
         raise ValueError(
             f"Regex'd a field (one of {field_patterns}) which is not a "
             f"valid search filter!"
@@ -140,4 +140,9 @@ def parse_search_box(search_text):
     if not entity_query and not raw_text:
         raise ZumbiWebSearchError("No raw text nor entity query parsed!")
 
-    return entity_query, raw_text
+    entity_query_key = {}
+    for code in entity_query.keys():
+        code_id = entity_code.code_map[code].code_id
+        entity_query_key[code_id] = entity_query[code]
+    
+    return entity_query_key, raw_text

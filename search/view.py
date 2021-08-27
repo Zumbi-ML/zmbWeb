@@ -18,10 +18,8 @@ from constants import (
     elastic_pass,
     elastic_user,
     example_searches,
-    search_filter_color_map,
-    valid_search_filters,
 )
-
+from entity_code import entity_code
 
 """
 View html blocks for the search app.
@@ -144,10 +142,11 @@ def search_bar_and_buttons_html():
 
     sized = "is-size-7"
     tooltip_spans = [html.Span("Palavras-chave: ", className=sized)]
-    for k in valid_search_filters:
-        color = search_filter_color_map[k]
+    for key in entity_code.map.keys():
+        color = entity_code.map[key].color
+        code = entity_code.map[key].code
         tooltip_span = html.Span(
-            k, className=f"msweb-is-{color}-txt {sized} has-text-weight-bold"
+            code, className=f"msweb-is-{color}-txt {sized} has-text-weight-bold"
         )
         tooltip_spans.append(tooltip_span)
         tooltip_spans.append(html.Span(", "))
@@ -255,7 +254,7 @@ def guided_search_boxes_html():
     )
 
     entity_filters_html = [
-        guided_search_box_elastic_html(f) for f in valid_search_filters
+        guided_search_box_elastic_html(key) for key in entity_code.map.keys()
     ]
 
     entity_filter_row_1 = html.Div(
@@ -301,56 +300,18 @@ def guided_search_box_elastic_html(field):
     Args:
         field (str): The field type. Either a lowercase entity or "texto".
     """
-    placeholders = {
-        "pes": "Miguel, João Pedro,...",
-        "mid": "BBC News, Facebook, Instagram, R7, ...",
-        "educ": "São Paulo, RJ, EUA, ...",
-        "com": "Nubank, iFood, Rappi, Itaú, ...",
-        "gov": "Superior Tribunal Federal, Casa Civil, ...",
-        "cid": "São Paulo, Rio de Janeiro, Nova Iorque, ...",
-        "pais": "Brasil, EUA, ...",
-        "pol": "polícia militar, polícia civil, fbi, ...",
-        "obra": "nomes de obras literárias, filmes, musicais, ...",
-        "mov": "Black Lives Matter, Panteras Negras, NAACP, ...",
-        "texto": "Jovem negro é morto..."
-    }
 
-    ES_field_dict = {
-        "pes": "Nomes de pessoas",
-        "mid": "Nomes de veículos",
-        "educ": "Nomes de instituições de pesquisa e educação",
-        "com": "Nomes de organizações comerciais",
-        "gov": "Nomes de orgãos governamentais",
-        "cid": "Nomes de cidades",
-        "pais": "Nomes de países",
-        "obra": "nomes de obras literárias, filmes, musicais, ...",
-        "pol": "Nomes de polícias",
-        "mov": "Nomes de movimentos, ...",
-        "texto": "Texto complementar para incrementar a busca."
-    }
-
-    tooltip_texts = {
-        "pes": "Nomes de pessoas",
-        "mid": "Nomes de veículos",
-        "educ": "Nomes de instituições de pesquisa e educação",
-        "com": "Nomes de organizações comerciais",
-        "gov": "Nomes de organizações governamentais",
-        "cid": "Nomes de cidades",
-        "pais": "Nomes de países",
-        "obra": "nomes de obras literárias, filmes, musicais, ...",
-        "pol": "Nomes de polícias",
-        "mov": "Nomes de movimentos, ...",
-        "texto": "Texto complementar para incrementar a busca."
-    }
-
-    color = search_filter_color_map[field]
+    color = entity_code.map[field].color
     common_entity_style = (
         f"msweb-is-{color}-txt is-size-5 has-text-weight-semibold"
     )
-    entity_txt = "{}:".format(field.capitalize())
+
+    code = entity_code.map[field].code
+    entity_txt = "{}:".format(code.capitalize())
     entity_name = html.Div(entity_txt, className=f"{common_entity_style}")
 
-    tooltip_txt = tooltip_texts[field]
+    #tooltip_txt = tooltip_texts[field]
+    tooltip_txt = entity_code.map[field].explanation
     entity_label_tooltip = html.Div(
         tooltip_txt, className=f"tooltip-text is-size-7  has-margin-5"
     )
@@ -359,10 +320,10 @@ def guided_search_box_elastic_html(field):
     esas = ESAutosuggest(
         id="search-" + field + "-filters-input",
         fields=["original", "normalized"],
-        endpoint=elastic_host + "/" + ES_field_dict[field] + "/_search",
+        endpoint=elastic_host + "/" + entity_code.map[field].explanation + "/_search",
         defaultField="original",
         additionalField="normalized",
-        placeholder=placeholders[field],
+        placeholder=entity_code.map[field].examples,
         authUser=elastic_user,
         authPass=elastic_pass,
         searchField="original.edgengram",
@@ -371,7 +332,7 @@ def guided_search_box_elastic_html(field):
         autoFocus=True,
         spellCheck=False,
     )
-    # esas = dcc.Input(id="search_" + field + "_filters_input")
+    esas = dcc.Input(id="search_" + entity_code.map[field].code + "_filters_input")
 
     textbox = html.Div(
         [entity_name, esas, entity_label_tooltip],

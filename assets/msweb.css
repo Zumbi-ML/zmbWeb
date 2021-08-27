@@ -166,6 +166,14 @@ details[open] summary ~ * {
     color: #2b2a2a;
 }
 
+.msweb-is-black-txt {
+    color: #2f1a2f;
+}
+
+.msweb-is-brown-txt {
+    color: #A52A2A;
+}
+
 .msweb-ubuntu {
     font-family: Ubuntu, "sans-serif"
 }

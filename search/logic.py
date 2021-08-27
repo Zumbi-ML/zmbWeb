@@ -5,7 +5,7 @@ import re
 
 from zumbi import ZumbiRestError
 from common import common_rester_error_html
-from constants import example_searches, valid_search_filters
+from constants import example_searches
 from search.subviews.entities import entities_results_html
 from search.util import (
     ZumbiWebSearchError,
@@ -15,6 +15,7 @@ from search.view import (
     malformed_query_warning_html,
     no_query_warning_html,
 )
+from entity_code import entity_code
 
 """
 Callback logic for callbacks in the search app.
@@ -98,7 +99,7 @@ def search_bar_live_display(example_search_n_clicks, *ent_txts):
     """
     if example_search_n_clicks == 0:
         entry = ""
-        for i, ent in enumerate(valid_search_filters):
+        for i, ent in enumerate(entity_code.valid_search_filters):
             ent_txt = ent_txts[i]
             if ent_txt not in [None, "", " "]:
                 entry += f"{ent}: {ent_txt}, "

@@ -8,7 +8,7 @@ from search.common import (
     common_results_container_style,
     no_results_html,
 )
-
+from entity_code import entity_code
 """
 Functions for defining the results container when entity results are desired.
 
@@ -23,20 +23,6 @@ MAX_N_COLUMNS = 3
 
 big_label_and_disclaimer = big_label_and_disclaimer_html("entities")
 entities_no_results_html = no_results_html(pre_label=big_label_and_disclaimer)
-
-db2front_ent_types = {
-    "PER": "pes",
-    "MED": "mid",
-    "EDU": "educ",
-    "ORG": "com",
-    "GOV": "gov",
-    "CITY": "cid",
-    "CTRY": "pais",
-    "POL": "pol",
-    "WRK": "obra",
-    "MOV": "mov",
-    "text": "texto"
-}
 
 def entities_results_html(entity_query, raw_text):
     """
@@ -84,12 +70,12 @@ def all_score_tables_html(results_dict):
     div_rows, div_elems = [], []
 
     k = 0 # an entity type counter
-    for entity_type in results_dict.keys():
+    for json_code in results_dict.keys():
         k += 1
 
-        front_ent_type = db2front_ent_types.get(entity_type)
+        code_id = entity_code.json_map[json_code].code_id
         div_elems.append(
-            single_entity_score_table_html( results_dict[entity_type], front_ent_type, third )
+            single_entity_score_table_html( results_dict[json_code], code_id, third )
         )
 
         reached_max_n_columns = k % MAX_N_COLUMNS == 0
@@ -106,13 +92,13 @@ def all_score_tables_html(results_dict):
 
     return html.Div(div_rows)
 
-def single_entity_score_table_html(most_common, entity_type, width):
+def single_entity_score_table_html(most_common, code_id, width):
     """
     Get the html block for a single entity's score table.
 
     Args:
         most_common ([str]): The most common entities of this type.
-        entity_type (str): The entity type (e.g., "pessoa")
+        code_id (str): The code id (e.g., "person")
         width (the width of the table in terms of the table container). Valid
             widths are specified according to bulma column widths, e.g.,
             "is-half".
@@ -128,9 +114,10 @@ def single_entity_score_table_html(most_common, entity_type, width):
     else:
         table_label = f"Todas as {formatted_n_results} entidades"
 
-    color = entity_color_map[entity_type.lower()]
+    #color = entity_color_map[entity_type.lower()]
+    color = entity_code.map[code_id].color
     header_entity_type = html.Span(
-        f"{entity_type}", className=f"msweb-has-{color}-txt"
+        f"{entity_code.map[code_id].code}", className=f"msweb-has-{color}-txt"
     )
     header_table_label = html.Span(f": {table_label}")
 
