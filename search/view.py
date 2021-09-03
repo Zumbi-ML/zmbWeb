@@ -94,8 +94,8 @@ def malformed_query_warning_html(bad_search_txt):
     warning_header_txt = f"Oops, we didn't understand that search."
     warning_body_txt = (
         f'\n Your search was: "{bad_search_txt}"\n. Try the format entity1: '
-        f'value1, entity2: value2. For example: "material: PbTe, '
-        f'property: thermoelectric"'
+        f'value1, entity2: value2. For example: "person: George Floyd, '
+        f'country: USA"'
     )
     return common_warning_html(warning_header_txt, warning_body_txt, "is-half")
 

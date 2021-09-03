@@ -1,13 +1,13 @@
 [
-  "pes: George Floyd",
-  "mid: BBC News",
-  "educ: USP",
-  "com: Nubank",
-  "gov: Superior Tribunal Federal",
-  "cid: São Paulo",
-  "pais: Brasil",
-  "pol: Polícia Militar",
+  "pessoa: George Floyd",
+  "fonte: BBC News, Folha de São Paulo, O Globo",
+  "educação: USP",
+  "comercial: Nubank, iFood",
+  "governamental: Superior Tribunal Federal",
+  "cidade: São Paulo",
+  "país: Brasil",
+  "polícia: Polícia Militar",
   "obra: Pequeno Manual Antirracista",
-  "mov: Black Lives Matter",
+  "movimento: Black Lives Matter",
   "texto: Jovem negro é morto"
 ]

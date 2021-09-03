@@ -94,7 +94,7 @@ class Rester(object):
                  'limit': top_k}
 
         return self._make_request(sub_url, payload=query, method=method)
-        
+
     def __search(self, group_by, entities, text=None, elements=None, top_k=10):
         method = "POST"
         sub_url = "/search/"
