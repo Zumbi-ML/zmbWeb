@@ -15,7 +15,7 @@ class CodeDescriptor:
 
 class EntityCode:
     def __init__(self):
-        code_ids = ["person", "media", "educational", "commercial", "gov", "city", "country", "police", "work", "movement", "text"]
+        code_ids = ["person", "source", "educational", "commercial", "gov", "city", "country", "police", "work", "movement", "text"]
         self.map = {}
         self.json_map = {}
         self.valid_search_filters = []

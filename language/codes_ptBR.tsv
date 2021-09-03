@@ -1,6 +1,6 @@
 code_id	code	examples	explanation	json_code	font_color
 person	pessoa	Marielle Franco, George Floyd...	Nomes de pessoas	PER	blue
-media	midia	BBC News, Instagram, G1...	Nomes de veículos	MED	purple
+source	fonte	Folha de São Paulo, O Globo...	Nomes de veículos	SRC	purple
 educational	educação	PUC-SP, USP, Harvard...	Nomes de instituições de educação e pesquisa	EDU	orange
 commercial	comercial	Nubank, iFood, Rappi...	Nomes de organizações comerciais	ORG	turq
 gov	governamental	STF, IBGE, CGU...	Nomes de órgãos governamentais	GOV	pink
