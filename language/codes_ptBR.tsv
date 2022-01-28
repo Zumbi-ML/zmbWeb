@@ -1,12 +1,16 @@
-code_id	code	examples	explanation	json_code	font_color
-person	pessoa	Marielle Franco, George Floyd...	Nomes de pessoas	PER	blue
-source	fonte	Folha de São Paulo, O Globo...	Nomes de veículos	SRC	purple
-educational	educação	PUC-SP, USP, Harvard...	Nomes de instituições de educação e pesquisa	EDU	orange
-commercial	comercial	Nubank, iFood, Rappi...	Nomes de organizações comerciais	ORG	turq
-gov	governamental	STF, IBGE, CGU...	Nomes de órgãos governamentais	GOV	pink
-city	cidade	São Paulo, Rio de Janeiro, Fortaleza...	Nomes de cidades	CITY	red
-country	país	Brasil, EUA, Argentina...	Nomes de países	CTRY	green
-police	polícia	Polícia Civil, Polícia Militar, FBI...	Nomes de polícias	POL	brown
-work	obra	Pequeno Manual Antirracista...	Nomes de obras literárias e musicais	WRK	grey
-movement	movimento	Black Lives Matter, Panteras Negras, NAACP...	Nomes de movimentos	MOV	dark-green
-text	texto	Jovem negro é morto	Texto livre para incrementar a busca	TXT	black
+code_id	web_label	examples	explanation
+people	pessoas	Marielle Franco, George Floyd...	Nomes de pessoas
+sources	fontes	Folha de São Paulo, O Globo...	Nomes de veículos de mídias
+educational	educacional	PUC-SP, USP, Harvard...	Nomes de instituições de educação e pesquisa
+private	privado	Nubank, iFood, Rappi...	Nomes de organizações comerciais
+public	público	STF, IBGE, CGU...	Nomes de órgãos governamentais
+cities	cidades	São Paulo, Rio de Janeiro, Fortaleza...	Nomes de cidades
+countries	países	Brasil, EUA, Argentina...	Nomes de países
+polices	polícias	Polícia Civil, Polícia Militar, FBI...	Nomes de polícias
+works	obras	Pequeno Manual Antirracista...	Nomes de obras literárias e musicais
+movements	movimentos	Black Lives Matter, Panteras Negras, NAACP...	Nomes de movimentos
+political	político	PT, PSDB	Nomes de partidos políticos
+states	estados	São Paulo, Rio de Janeiro, Santa Catarina…	Nomes de estados
+laws	leis	Lei Áurea	Nomes de leis
+media	mídias	Reuter, Instagram, Folha de São Paulo	Nomes de mídias
+texts	texto	Jovem negro é morto	Texto livre para incrementar a busca

@@ -15,7 +15,8 @@ from search.view import (
     malformed_query_warning_html,
     no_query_warning_html,
 )
-from entity_code import entity_code
+
+from zmb_labels import ZmbLabels
 
 """
 Callback logic for callbacks in the search app.
@@ -99,7 +100,7 @@ def search_bar_live_display(example_search_n_clicks, *ent_txts):
     """
     if example_search_n_clicks == 0:
         entry = ""
-        for i, ent in enumerate(entity_code.valid_search_filters):
+        for i, ent in enumerate(ZmbLabels.valid_search_filters()):
             ent_txt = ent_txts[i]
             if ent_txt not in [None, "", " "]:
                 entry += f"{ent}: {ent_txt}, "

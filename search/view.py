@@ -19,7 +19,7 @@ from constants import (
     elastic_user,
     example_searches,
 )
-from entity_code import entity_code
+from zmb_labels import ZmbLabels
 
 """
 View html blocks for the search app.
@@ -142,9 +142,9 @@ def search_bar_and_buttons_html():
 
     sized = "is-size-7"
     tooltip_spans = [html.Span("Palavras-chave: ", className=sized)]
-    for key in entity_code.map.keys():
-        color = entity_code.map[key].color
-        code = entity_code.map[key].code
+    for class_ in ZmbLabels.all_classes():
+        color = class_.color()
+        code = class_.web_label()
         tooltip_span = html.Span(
             code, className=f"msweb-is-{color}-txt {sized} has-text-weight-bold"
         )
@@ -254,7 +254,7 @@ def guided_search_boxes_html():
     )
 
     entity_filters_html = [
-        guided_search_box_elastic_html(key) for key in entity_code.map.keys()
+        guided_search_box_elastic_html(class_) for class_ in ZmbLabels.all_classes()
     ]
 
     entity_filter_row_1 = html.Div(
@@ -293,7 +293,7 @@ def guided_search_boxes_html():
     return hidden_container
 
 
-def guided_search_box_elastic_html(field):
+def guided_search_box_elastic_html(class_):
     """
     Get the html block for a single filter boxes with ESAutosuggest.
 
@@ -301,29 +301,29 @@ def guided_search_box_elastic_html(field):
         field (str): The field type. Either a lowercase entity or "texto".
     """
 
-    color = entity_code.map[field].color
+    color = class_.color()
     common_entity_style = (
         f"msweb-is-{color}-txt is-size-5 has-text-weight-semibold"
     )
 
-    code = entity_code.map[field].code
+    code = class_.web_label()
     entity_txt = "{}:".format(code.capitalize())
     entity_name = html.Div(entity_txt, className=f"{common_entity_style}")
 
     #tooltip_txt = tooltip_texts[field]
-    tooltip_txt = entity_code.map[field].explanation
+    tooltip_txt = class_.explanation()
     entity_label_tooltip = html.Div(
         tooltip_txt, className=f"tooltip-text is-size-7  has-margin-5"
     )
 
     # Autosuggest is styled by CSS react classnames ONLY!
     esas = ESAutosuggest(
-        id="search-" + field + "-filters-input",
+        id="search-" + class_.api() + "-filters-input",
         fields=["original", "normalized"],
-        endpoint=elastic_host + "/" + entity_code.map[field].explanation + "/_search",
+        endpoint=elastic_host + "/" + class_.explanation() + "/_search",
         defaultField="original",
         additionalField="normalized",
-        placeholder=entity_code.map[field].examples,
+        placeholder=class_.examples(),
         authUser=elastic_user,
         authPass=elastic_pass,
         searchField="original.edgengram",
@@ -332,7 +332,7 @@ def guided_search_box_elastic_html(field):
         autoFocus=True,
         spellCheck=False,
     )
-    esas = dcc.Input(id="search_" + entity_code.map[field].code + "_filters_input")
+    esas = dcc.Input(id="search_" + class_.web_label() + "_filters_input")
 
     textbox = html.Div(
         [entity_name, esas, entity_label_tooltip],

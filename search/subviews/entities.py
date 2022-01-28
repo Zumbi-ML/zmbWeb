@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import dash_html_components as html
+from zmb_labels import ZmbLabels
 
-from constants import entity_color_map, rester
+from constants import rester
 from search.common import (
     big_label_and_disclaimer_html,
     common_results_container_style,
     no_results_html,
 )
-from entity_code import entity_code
+
 """
 Functions for defining the results container when entity results are desired.
 
@@ -70,12 +71,11 @@ def all_score_tables_html(results_dict):
     div_rows, div_elems = [], []
 
     k = 0 # an entity type counter
-    for json_code in results_dict.keys():
+    for entity_ in ZmbLabels.all_classes():
         k += 1
 
-        code_id = entity_code.json_map[json_code].code_id
         div_elems.append(
-            single_entity_score_table_html( results_dict[json_code], code_id, third )
+            single_entity_score_table_html( results_dict[entity_.api()], entity_, third )
         )
 
         reached_max_n_columns = k % MAX_N_COLUMNS == 0
@@ -92,7 +92,7 @@ def all_score_tables_html(results_dict):
 
     return html.Div(div_rows)
 
-def single_entity_score_table_html(most_common, code_id, width):
+def single_entity_score_table_html(most_common, entity_, width):
     """
     Get the html block for a single entity's score table.
 
@@ -114,10 +114,9 @@ def single_entity_score_table_html(most_common, code_id, width):
     else:
         table_label = f"Todas as {formatted_n_results} entidades"
 
-    #color = entity_color_map[entity_type.lower()]
-    color = entity_code.map[code_id].color
+    color = entity_.color()
     header_entity_type = html.Span(
-        f"{entity_code.map[code_id].code}", className=f"msweb-has-{color}-txt"
+        f"{entity_.api()}", className=f"msweb-has-{color}-txt"
     )
     header_table_label = html.Span(f": {table_label}")
 
