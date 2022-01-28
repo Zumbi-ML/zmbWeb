@@ -122,8 +122,12 @@ details[open] summary ~ * {
     background-color: #FFFFFF
 }
 
+.msweb-is-light-green-txt {
+        color: #37C624;
+}
+
 .msweb-is-green-txt {
-    color: #37C624;
+    color: #3faf46;
 }
 
 .msweb-is-dark-green-txt {
@@ -134,12 +138,28 @@ details[open] summary ~ * {
     color: #5073F5;
 }
 
+.msweb-is-dark-blue-txt {
+    color: #3465A4;
+}
+
+.msweb-is-light-blue-txt {
+    color: #5983B0;
+}
+
 .msweb-is-orange-txt {
     color: #EE9918;
 }
 
+.msweb-is-light-red-txt {
+    color: #ff3838;
+}
+
 .msweb-is-red-txt {
     color: #FF5733;
+}
+
+.msweb-is-dark-red-txt {
+    color: #f10d0c;
 }
 
 .msweb-is-turq-txt {
@@ -172,6 +192,10 @@ details[open] summary ~ * {
 
 .msweb-is-brown-txt {
     color: #A52A2A;
+}
+
+.msweb-is-brown-txt {
+    color: #55308d;
 }
 
 .msweb-ubuntu {
