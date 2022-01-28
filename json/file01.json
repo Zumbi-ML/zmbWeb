@@ -1,5 +1,5 @@
 {
-   "PER":[
+   "people":[
       {
          "name":"francine gomes",
          "count":6
@@ -41,7 +41,7 @@
          "count":3
       }
    ],
-   "MED":[
+   "media":[
       {
          "name":"twitter",
          "count":42
@@ -67,7 +67,7 @@
          "count":22
       }
    ],
-   "EDU":[
+   "educational":[
       {
          "name":"usp",
          "count":21
@@ -109,7 +109,7 @@
          "count":7
       }
    ],
-   "ORG":[
+   "private":[
       {
          "name":"microsoft",
          "count":49
@@ -151,7 +151,7 @@
          "count":32
       }
    ],
-   "GOV":[
+   "public":[
       {
          "name":"supremo tribunal Federal",
          "count":43
@@ -169,7 +169,7 @@
          "count":23
       }
    ],
-   "CITY":[
+   "cities":[
       {
          "name":"manaus",
          "count":32
@@ -203,7 +203,7 @@
          "count":12
       }
    ],
-   "CTRY":[
+   "countries":[
       {
          "name":"brasil",
          "count":37
@@ -229,7 +229,7 @@
          "count":22
       }
    ],
-   "POL":[
+   "polices":[
       {
          "name":"pol\u00edcia civil",
          "count":27
@@ -259,7 +259,7 @@
          "count":14
       }
    ],
-   "WRK":[
+   "works":[
       {
          "name":"racismo estrutural",
          "count":29
@@ -285,7 +285,7 @@
          "count":19
       }
    ],
-   "MOV":[
+   "movements":[
       {
          "name":"black youth project",
          "count":28
