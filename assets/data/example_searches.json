@@ -1,13 +1,15 @@
 [
-  "pessoa: George Floyd",
-  "fonte: BBC News, Folha de São Paulo, O Globo",
-  "educação: USP",
-  "comercial: Nubank, iFood",
-  "governamental: Superior Tribunal Federal",
-  "cidade: São Paulo",
-  "país: Brasil",
-  "polícia: Polícia Militar",
-  "obra: Pequeno Manual Antirracista",
-  "movimento: Black Lives Matter",
-  "texto: Jovem negro é morto"
+  "pessoas: George Floyd, Djamila Ribeiro",
+  "fontes: BBC News, Folha de São Paulo, O Globo",
+  "educacional: USP",
+  "privado: Nubank, iFood",
+  "público: Superior Tribunal Federal",
+  "cidades: São Paulo, Belo Horizonte",
+  "estados: São Paulo, Santa Catarina",
+  "países: Brasil, EUA",
+  "leis: Lei Áurea",
+  "polícias: Polícia Militar, FBI",
+  "obras: Pequeno Manual Antirracista",
+  "movimentos: Black Lives Matter",
+  "político: PT, PSDB, Novo"
 ]
