@@ -5,6 +5,9 @@ import json
 import warnings
 from os import environ
 from requesterfactory import RequesterFactory
+from dotenv import load_dotenv
+
+load_dotenv()
 
 """
 This module provides classes to interface with the Zumbi REST
@@ -49,18 +52,19 @@ class Rester(object):
 
     def __init__(self, api_key=None, endpoint=None):
         self.api_key = api_key if api_key else environ.get('ZUMBI_API_KEY', None)
-        #if not self.api_key:
-        #    raise ZumbiRestError(
-        #        "Please specify an API key or request one through the "
-        #        "Zumbi team."
-        #    )
+        if not self.api_key:
+            raise ZumbiRestError(
+                "Please specify an API key or request one through the "
+                "Zumbi team."
+            )
 
         if endpoint:
             self.preamble = endpoint
         else:
-            self.preamble = environ.get('ZUMBI_ENDPOINT', None)
-            if not self.preamble:
-                self.preamble = "https://0.0.0.0:8081"
+            endpoint = environ.get("ZUMBI_ENDPOINT")
+            api_version =environ.get("ZUMBI_API_VERSION")
+            api_base_path = f"{endpoint}{api_version}"
+            self.preamble = api_base_path
 
         self.session = requests.Session()
         self.session.headers = {"x-api-key": self.api_key}
@@ -87,14 +91,6 @@ class Rester(object):
                 if hasattr(response, "content") else str(ex)
             raise ZumbiRestError(msg)
 
-    def entities_search(self, entities, text=None, elements=None, top_k=10):
-        method = "POST"
-        sub_url = "/entities"
-        query = {'query': {'entities': entities, 'text': text},
-                 'limit': top_k}
-
-        return self._make_request(sub_url, payload=query, method=method)
-
     def __search(self, group_by, entities, text=None, elements=None, top_k=10):
         method = "POST"
         sub_url = "/search/"
@@ -103,6 +99,23 @@ class Rester(object):
             query['text'] = text
         if elements:
             query['elements'] = elements
+
+        return self._make_request(sub_url, payload=query, method=method)
+
+    # Public Methods
+    # ==========================================================================
+
+    def entities_search(self, entities, text=None, elements=None, top_k=10):
+        method = "GET"
+        sub_url = "stats/entities"
+        query = entities
+
+        return self._make_request(sub_url, payload=query, method=method)
+
+    def entities_summary(self, entities, text=None, elements=None, top_k=10):
+        method = "GET"
+        sub_url = "stats/summary"
+        query = None
 
         return self._make_request(sub_url, payload=query, method=method)
 
