@@ -55,21 +55,25 @@ def parse_search_box(search_text):
 
     Args:
         search_text (Str): The text in the search box, e.g.
-            "person: George Floyd, country: USA"
+            "people: George Floyd, countries: USA"
 
     Returns:
         entity_query (dict): The entity query in rester working context
         raw_text (str): The raw text to pass into the text field
     """
-    if not search_text.strip():
-        raise ZumbiWebSearchError("No text entered!")
+    # E.g.: search_text: cities: São Paulo countries: Brasil
+    if not search_text or not search_text.strip():
+        return None, None
 
     for f in ZmbLabels.valid_search_filters():
         if f in search_text.lower():
             redata = re.compile(re.escape(f), re.IGNORECASE)
             search_text = redata.sub(f, search_text)
 
+    # re_delimiters => "cities|countries|states|private|educational|...."
     re_delimiters = "|".join(ZmbLabels.valid_search_filters())
+
+    # field_patterns => ['cities', 'countries']
     field_patterns = re.findall(f"({re_delimiters}):", search_text)
 
     if len(set(field_patterns)) < len(field_patterns):
@@ -85,8 +89,10 @@ def parse_search_box(search_text):
         raise ZumbiWebSearchError("No valid entity fields entered!")
 
     entity_query = {}
+    # Reversing the list is used to erase
     field_patterns.reverse()
     rtext = copy.deepcopy(search_text)
+
     for fp in field_patterns:
         query_pattern = re.findall(f"{fp}:.*", rtext)[0]
         rtext = rtext.replace(query_pattern, "")
@@ -95,6 +101,8 @@ def parse_search_box(search_text):
         query_patterns = [qt for qt in query_patterns if qt]
         entity_query[fp] = query_patterns
 
+    # entity_query:
+    # {'countries': ['Brasil'], 'cities': ['São Paulo', 'Buenos Aires']}
     if any(
         [len(v) > MAX_N_PATTERNS_PER_ENTITY for v in entity_query.values()]
     ):
@@ -140,6 +148,7 @@ def parse_search_box(search_text):
     if not entity_query and not raw_text:
         raise ZumbiWebSearchError("No raw text nor entity query parsed!")
 
+    # Transforms entity_query for a specific language to the API codes
     entity_query_key = {}
     for code in entity_query.keys():
         code_id = ZmbLabels.web_lbl_2_api(code)

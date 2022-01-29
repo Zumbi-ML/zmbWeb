@@ -232,63 +232,7 @@ def guided_search_boxes_html():
     Returns:
         (dash_html_components.Div): The html block for the hidden search fields.
     """
-    hr = divider_html()
-    dropdown = dcc.Dropdown(
-        id="search-type-dropdown",
-        options=[
-            {
-                "label": "Pesquise por: Estatísticas",
-                "value": "entities",
-            },
-            {"label": "Pesquise por: Matérias Jornalísticas", "value": "abstracts"},
-            {"label": "Pesquise por: Tudo", "value": "everything"},
-        ],
-        value="everything",
-    )
-    dropdown_column = html.Div(dropdown, className="column is-fullwidth")
-    dropdown_columns = html.Div(
-        [dropdown_column], className="columns is-centered"
-    )
-    dropdown_container = html.Div(
-        dropdown_columns, className="container has-margin-5"
-    )
-
-    entity_filters_html = [
-        guided_search_box_elastic_html(class_) for class_ in ZmbLabels.all_classes()
-    ]
-
-    entity_filter_row_1 = html.Div(
-        entity_filters_html[0:3], className="columns is-centered"
-    )
-    entity_filter_row_2 = html.Div(
-        entity_filters_html[3:6], className="columns is-centered"
-    )
-    entity_filter_row_3 = html.Div(
-        entity_filters_html[6:9], className="columns is-centered"
-    )
-    entity_filter_rows = [
-        entity_filter_row_1,
-        entity_filter_row_2,
-        entity_filter_row_3,
-    ]
-
-    advanced_search_boxes = html.Div(
-        entity_filter_rows,
-        id="advanced_search_boxes",
-        className="container has-margin-top-10",
-    )
-
-    summary_txt = "Pesquisa guiada"
-    summary = html.Summary(
-        summary_txt, className="has-text-centered is-size-6"
-    )
-    hidden_column = html.Details(
-        [hr, dropdown_container, summary, advanced_search_boxes],
-        className="column is-half",
-    )
-
-    hidden_columns = html.Div(hidden_column, className="columns is-centered")
-    hidden_container = html.Div([hidden_columns], className="container")
+    hidden_container = html.Div(className="container")
 
     return hidden_container
 
@@ -310,7 +254,6 @@ def guided_search_box_elastic_html(class_):
     entity_txt = "{}:".format(code.capitalize())
     entity_name = html.Div(entity_txt, className=f"{common_entity_style}")
 
-    #tooltip_txt = tooltip_texts[field]
     tooltip_txt = class_.explanation()
     entity_label_tooltip = html.Div(
         tooltip_txt, className=f"tooltip-text is-size-7  has-margin-5"

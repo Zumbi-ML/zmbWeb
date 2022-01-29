@@ -25,7 +25,19 @@ MAX_N_COLUMNS = 3
 big_label_and_disclaimer = big_label_and_disclaimer_html("entities")
 entities_no_results_html = no_results_html(pre_label=big_label_and_disclaimer)
 
-def entities_results_html(entity_query, raw_text):
+def entities_results_query(entity_query, raw_text):
+    results = rester.entities_search(
+        entity_query, text=raw_text, top_k=MAX_N_ROWS_FOR_EACH_ENTITY_TABLE
+    )
+    return entities_results_html(results)
+
+def entities_results_summary():
+    results = rester.entities_summary(
+        None, text=None, top_k=MAX_N_ROWS_FOR_EACH_ENTITY_TABLE
+    )
+    return entities_results_html(results)
+
+def entities_results_html(results):
     """
     Get the html block for entities results from the Rester-compatible
     entity query and text.
@@ -38,9 +50,6 @@ def entities_results_html(entity_query, raw_text):
         (dash_html_components.Div): The entities results html block.
 
     """
-    results = rester.entities_search(
-        entity_query, text=raw_text, top_k=MAX_N_ROWS_FOR_EACH_ENTITY_TABLE
-    )
     # It seems that results should
     if results is None or not any([v for v in results.values()]):
         return entities_no_results_html
@@ -72,8 +81,10 @@ def all_score_tables_html(results_dict):
 
     k = 0 # an entity type counter
     for entity_ in ZmbLabels.all_classes():
-        k += 1
+        if (not entity_.api() in results_dict.keys()):
+            continue
 
+        k += 1
         div_elems.append(
             single_entity_score_table_html( results_dict[entity_.api()], entity_, third )
         )
@@ -116,12 +127,12 @@ def single_entity_score_table_html(most_common, entity_, width):
 
     color = entity_.color()
     header_entity_type = html.Span(
-        f"{entity_.api()}", className=f"msweb-has-{color}-txt"
+        f"{entity_.web_label().title()}", className=f"msweb-has-{color}-txt"
     )
     header_table_label = html.Span(f": {table_label}")
 
     header_entity_type = html.Th([header_entity_type, header_table_label])
-    header_score = html.Th("Cont")
+    header_score = html.Th("Contagem")
     header = html.Tr([header_entity_type, header_score])
 
     rows = [None] * n_results
@@ -130,7 +141,7 @@ def single_entity_score_table_html(most_common, entity_, width):
     for dic in most_common:
         ent, count = dic['name'], dic['count']
         entity = html.Td(ent, className="has-width-50")
-        count = html.Td("{:.2f}".format(count), className="has-width-50")
+        count = html.Td("{}".format(count), className="has-width-50")
         rows[row_number] = html.Tr([entity, count])
         row_number += 1
         if row_number == MAX_N_ROWS_FOR_EACH_ENTITY_TABLE - 1:

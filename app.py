@@ -196,11 +196,10 @@ def sum_all_fields_and_buttons_n_submits(*all_n_clicks):
     Output("search-results-container", "children"),
     [Input("search-go-button", "n_clicks")],
     [
-        State("search-type-dropdown", "value"),
         State("search-main-bar-input", "value"),
     ],
 )
-def show_search_results(go_button_n_clicks, dropdown_value, search_text):
+def show_search_results(go_button_n_clicks, search_text):
     """
     Determine what kind of results to show from the search text, search type,
     and number of clicks of the search button. Cache if necessary using flask.
@@ -216,19 +215,18 @@ def show_search_results(go_button_n_clicks, dropdown_value, search_text):
     """
 
     if search_text:
-        # Prevent from caching on n_clicks if the results aren"t empty
+        # Prevent from caching on n_clicks if the results aren't empty
         @cache.memoize(timeout=cache_timeout)
-        def memoize_wrapper(dropdown_value, search_text):
+        def memoize_wrapper(search_text):
             return sl.show_search_results(
-                go_button_n_clicks, dropdown_value, search_text
+                go_button_n_clicks, search_text
             )
 
-        return memoize_wrapper(dropdown_value, search_text)
+        return memoize_wrapper(search_text)
     else:
         return sl.show_search_results(
-            go_button_n_clicks, dropdown_value, search_text
+            go_button_n_clicks,search_text
         )
-
 
 # Animates the count up for the search bar
 # See count.js and clientside.js for more details

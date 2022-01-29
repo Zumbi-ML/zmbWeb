@@ -1,6 +1,6 @@
 import dash_core_components as dcc
 import dash_html_components as html
-
+from datetime import date
 
 """
 Defining the core view (layout) component for the entire app.
@@ -78,8 +78,8 @@ def nav_html(page="/"):
     highlighted_style = " msweb-is-underlined"
     if page in ["/", "/search"]:
         styles["search"] += highlighted_style
-    elif page == "/extract":
-        styles["extract"] += highlighted_style
+    #elif page == "/extract":
+    #    styles["extract"] += highlighted_style
     elif page == "/about":
         # styles["about"] += highlighted_style
         styles["info"] += highlighted_style
@@ -94,9 +94,9 @@ def nav_html(page="/"):
     search = dcc.Link(
         "Pesquisar Corpus", href="/search", className=styles["search"]
     )
-    extract = dcc.Link(
-        "Analisar uma Matéria", href="/extract", className=styles["extract"]
-    )
+    #extract = dcc.Link(
+    #    "Analisar uma Matéria", href="/extract", className=styles["extract"]
+    #)
     about = dcc.Link("Sobre", href="/about", className=styles["about"])
     journals = dcc.Link(
         "Matérias", href="/journals", className=styles["journals"]
@@ -108,7 +108,8 @@ def nav_html(page="/"):
         className="navbar-item has-dropdown is-hoverable",
     )
     navbar_start = html.Div(
-        [search, extract, dropdown], className="navbar-start"
+        #[search, extract, dropdown], className="navbar-start"
+        [search, dropdown], className="navbar-start"
     )
 
     log_in = html.A(
@@ -209,8 +210,9 @@ def footer_html():
         ]
     )
 
+    this_year = str(date.today().year)
     footer_copyright = html.Div(
-        html.Span("Copyright © 2021 - PUC-SP Intelligence Team")
+        html.Span(f"Copyright © {this_year} - PUC-SP Intelligence Team")
     )
 
     footer = html.Div(
@@ -261,6 +263,6 @@ def outage_html():
         [img_link, title, explanation1, explanation2, contact],
         className="has-margin-30",
     )
-    
+
     container = html.Div(inner_container, className="container")
     return container

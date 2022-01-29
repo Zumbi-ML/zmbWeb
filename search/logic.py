@@ -6,7 +6,10 @@ import re
 from zumbi import ZumbiRestError
 from common import common_rester_error_html
 from constants import example_searches
-from search.subviews.entities import entities_results_html
+from search.subviews.entities import (
+    entities_results_query,
+    entities_results_summary
+)
 from search.util import (
     ZumbiWebSearchError,
     parse_search_box,
@@ -23,9 +26,7 @@ Callback logic for callbacks in the search app.
 
 Please do not define any html blocks in this file.
 """
-
-
-def show_search_results(go_button_n_clicks, dropdown_value, search_text):
+def show_search_results(go_button_n_clicks, search_text):
     """
     Determine what kind of results to show from the search text, search type,
     and number of clicks of the search button.
@@ -43,17 +44,17 @@ def show_search_results(go_button_n_clicks, dropdown_value, search_text):
         return ""
     else:
         try:
-            if not search_text:
-                return no_query_warning_html()
 
             try:
                 entity_query, raw_text = parse_search_box(search_text)
             except ZumbiWebSearchError:
                 return malformed_query_warning_html(search_text)
 
-            entity_query, raw_text = parse_search_box(search_text)
+            if (entity_query):
+                return entities_results_query(entity_query, raw_text)
+            else:
+                return entities_results_summary()
 
-            return entities_results_html(entity_query, raw_text)
         except ZumbiRestError:
             rester_error = (
                 "Este sistema ainda está em construção. "
