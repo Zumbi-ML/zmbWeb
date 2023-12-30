@@ -82,7 +82,7 @@ class Rester(object):
         self.session.close()
 
     def _make_request(self, sub_url, payload=None, method="GET"):
-        requester = RequesterFactory().create(self.session, "api")
+        requester = RequesterFactory().create(self.session, "dummy")
         url = self.preamble + sub_url
         try:
             return requester.make_request(url, method, payload, True)

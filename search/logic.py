@@ -3,7 +3,7 @@
 import random
 import re
 
-from zumbi import ZumbiRestError
+from resters import ZumbiRestError
 from common import common_rester_error_html
 from constants import example_searches
 from search.subviews.entities import (

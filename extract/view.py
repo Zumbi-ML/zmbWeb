@@ -8,7 +8,7 @@ from dash import dcc, html
 #import dash_core_components as dcc
 #import dash_html_components as html
 
-from zumbi import ZumbiRestError
+from resters import ZumbiRestError
 from common import (
     common_null_warning_html,
     common_rester_error_html,
